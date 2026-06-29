@@ -1,54 +1,10 @@
 pipeline {
-    // 'agent any' tells Jenkins to run this pipeline on your main EC2 instance
-    agent any 
-
-    environment {
-        // You can define global variables here to use throughout your pipeline
-        APP_NAME = "my-awesome-app"
-    }
-
+    agent any
     stages {
-        stage('Checkout') {
+        stage('Hello') {
             steps {
-                // When using "Pipeline from SCM", Jenkins automatically checks out your code.
-                // This step is a placeholder or used to echo confirmation.
-                echo "Successfully cloned the repository for ${env.APP_NAME}!"
+                echo 'Hello World from SCM!'
             }
-        }
-
-        stage('Build') {
-            steps {
-                echo "Building the application..."
-                // Replace this with your actual build command, for example:
-                // sh 'npm install' or sh './mvnw clean package'
-                sh 'echo "Compile and build steps go here"'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo "Running unit tests..."
-                // Replace this with your actual test command, for example:
-                // sh 'npm test' or sh 'make test'
-                sh 'echo "Test suite passed successfully!"'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo "Deploying application to the environment..."
-                sh 'echo "Deployment steps executed!"'
-            }
-        }
-    }
-
-    post {
-        // These blocks run automatically depending on how the stages finished
-        success {
-            echo "Pipeline completed successfully! Sending notifications..."
-        }
-        failure {
-            echo "Pipeline failed! Check the logs above to debug."
         }
     }
 }
